@@ -1,0 +1,32 @@
+ if game.PlaceId == 9421227126 then
+ 
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "BaconBoss | AutoHatch", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+_G.hatch = true
+
+function hatch()
+       while _G.hatch == true do
+       game:GetService("ReplicatedStorage").Events.OpenCrate:FireServer("Sapphire Crate")
+      wait(1)
+     end
+end
+
+local hatchTab = Window:MakeTab({
+	Name = "Auto Hatch",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+hatchTab:AddToggle({
+	Name = "Auto Hatch",
+	Default = false,
+	Callback = function(Value)
+		_G.hatch = Value
+        hatch()
+	end    
+})
+
+end
+
